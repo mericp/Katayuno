@@ -1,45 +1,30 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Product {
     private boolean physical;
     private boolean book;
 
-    public Product()
+    public Product(boolean physical)
     {
-        this.physical = false;
+        this.physical = physical;
         this.book = false;
     }
 
-    public void setPhysical(boolean physical)
+    public List<PackingSlip> payment()
     {
-        this.physical = physical;
-    }
+        List<PackingSlip> slips = new ArrayList<>();
 
-    public boolean getPhysical()
-    {
-        return physical;
-    }
-
-    public void setBook(boolean book)
-    {
-        this.book = book;
-    }
-
-    public boolean getBook()
-    {
-        return book;
-    }
-
-    public String payment()
-    {
         if (this.book) {
-            return PackingSlips.packingSlip.get("Rule1");
+            //return PackingSlips.packingSlip.get("Rule1");
         }
         else if (this.physical) {
-            return PackingSlips.packingSlip.get("Rule2");
+            PackingSlip slip = new PackingSlip("shipping");
+            slips.add(slip);
         }
-        else {
-            return "Fatal Error!!";
-        }
+
+        return slips;
     }
 }

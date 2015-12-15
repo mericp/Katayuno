@@ -1,31 +1,34 @@
 package com.company.test;
 
+import com.company.Book;
+import com.company.PackingSlip;
 import com.company.PackingSlips;
 import com.company.Product;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
+
 public class test1Test {
     @Test
     public void testIfPhysicalProductGeneratePackingSlip() {
-        Product product = new Product();
-        product.setPhysical(true);
+        Product product = new Product(true);
 
-        String result = product.payment();
-        String expected = PackingSlips.packingSlip.get("Rule1");
+        List<PackingSlip> result = product.payment();
+        String firstSlipOwner = result.get(0).getOwner();
 
-        Assert.assertEquals(expected, result);
-
+        Assert.assertTrue(result.size() == 1);
+        Assert.assertEquals(firstSlipOwner, "shipping");
     }
 
     @Test
     public void testIfBookDuplicatePackingSlip() {
-        Product product = new Product();
-        product.setBook(true);
+        Product product = new Book();
 
-        String result = product.payment();
-        String expected = PackingSlips.packingSlip.get("Rule2");
+        List<PackingSlip> result = product.payment();
+        String duplicatedSlipOwner = result.get(1).getOwner();
 
-        Assert.assertEquals(expected, result);
+        Assert.assertTrue(result.size() == 2);
+        Assert.assertEquals(duplicatedSlipOwner, "royalty");
     }
 }

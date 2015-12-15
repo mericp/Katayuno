@@ -11,7 +11,4 @@ public class PackingSlips {
         packingSlip.put("Rule1", "generate packing slip for shipping");
         packingSlip.put("Rule2", "create duplicate packing slip for the royalty department");
     }
-
-
-
 }
